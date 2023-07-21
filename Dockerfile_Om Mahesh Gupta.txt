@@ -1,0 +1,28 @@
+# Dockerfile_Om Mahesh Gupta
+# Base image
+FROM php:7.4-apache
+
+# Set arguments
+ARG WORDPRESS_VERSION=5.8
+
+# Install required packages
+RUN apt-get update && apt-get install -y wget unzip
+
+# Download and install WordPress
+WORKDIR /var/www/html
+RUN wget -q https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz && \
+    tar -xzf wordpress-${WORDPRESS_VERSION}.tar.gz && \
+    rm wordpress-${WORDPRESS_VERSION}.tar.gz
+
+# Set up Apache configuration
+COPY wordpress.conf /etc/apache2/sites-available/
+RUN a2ensite wordpress.conf
+
+# Start Apache and enable necessary modules
+RUN service apache2 start && a2enmod rewrite
+
+# Expose port 80
+EXPOSE 80
+
+# Set the entrypoint to start Apache
+ENTRYPOINT ["apache2-foreground"]

@@ -1,0 +1,17 @@
+Setup WordPress
+
+
+
+Steps We can Follow to do the Set-up...  
+
+1) SSH into the VM and pull the Docker image from Docker Hub.
+2) Run a Docker container from the image with the appropriate environment variables for database connection.
+3) Access the VM's public IP in your browser to finish the WordPress setup.
+
+
+
+
+Thank you Om Gupta...
+
+
+

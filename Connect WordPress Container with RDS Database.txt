@@ -1,0 +1,12 @@
+// We need to modify the "wp-config.php" file to connect to the RDS database.
+We can use environment variables to pass the database connection details to the container.
+// Thanks Om Gupta...
+
+
+
+define('DB_NAME',     getenv('DB_NAME'));
+define('DB_USER',     getenv('DB_USER'));
+define('DB_PASSWORD', getenv('DB_PASSWORD'));
+define('DB_HOST',     getenv('DB_HOST'));
+
+// We Can Do Other configurations below...
